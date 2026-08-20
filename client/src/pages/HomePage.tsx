@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Navbar } from "../components/layout/Navbar";
 import { useAuth } from "../context/AuthContext";
 
@@ -13,7 +14,7 @@ export function HomePage() {
         }}
       >
         <h1>Welcome, {user?.username} </h1>
-        <p>This is a placeholder the game itself gets built later</p>
+        <Link to="/game">Play</Link>
       </main>
     </>
   );

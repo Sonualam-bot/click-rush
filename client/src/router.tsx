@@ -3,6 +3,7 @@ import { ProtectedRoute } from "./components/layout/ProtectedRoute";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
+import { GamePage } from "./pages/GamePage";
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/game",
+        element: <GamePage />,
       },
     ],
   },
