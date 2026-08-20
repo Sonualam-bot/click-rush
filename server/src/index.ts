@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes";
+import gameRoutes from "./routes/game.routes";
 import { errorHandler } from "./middleware/errorHandler";
 
 /**
@@ -38,6 +39,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/game", gameRoutes);
 
 /**
  * Must be mounted after every route it's meant to catch — Express only

@@ -38,3 +38,27 @@ export class SessionUserNotFoundError extends AppError {
     super("Not authenticated", 401);
   }
 }
+
+export class InvalidModeError extends AppError {
+  constructor(mode: string) {
+    super(`Unknown game mode "${mode}"`, 400);
+  }
+}
+
+export class GameSessionNotFoundError extends AppError {
+  constructor() {
+    super("Game session not found", 404);
+  }
+}
+
+export class GameSessionAlreadySubmittedError extends AppError {
+  constructor() {
+    super("This game session has already been submitted", 409);
+  }
+}
+
+export class SubmittedTooEarlyError extends AppError {
+  constructor() {
+    super("Submitted before the game duration elapsed", 400);
+  }
+}
