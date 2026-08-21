@@ -5,6 +5,8 @@ import { connectDB } from "./config/db";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes";
 import gameRoutes from "./routes/game.routes";
+import leaderboardRoutes from "./routes/leaderboard.routes";
+import userRoutes from "./routes/user.routes";
 import { errorHandler } from "./middleware/errorHandler";
 
 /**
@@ -40,6 +42,8 @@ app.get("/health", (_req, res) => {
 
 app.use("/auth", authRoutes);
 app.use("/game", gameRoutes);
+app.use("/leaderboard", leaderboardRoutes);
+app.use("/user", userRoutes);
 
 /**
  * Must be mounted after every route it's meant to catch — Express only

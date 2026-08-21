@@ -14,3 +14,18 @@ export const GAME_MODES = {
 } as const satisfies Record<string, GameModeConfig>;
 
 export type ModeId = keyof typeof GAME_MODES;
+
+export function isValidMode(mode: string): mode is ModeId {
+  // hasOwnProperty, not the `in` operator — `in` also matches inherited
+  // properties like "toString"/"constructor", which would resolve to an
+  // Object.prototype function instead of a GameModeConfig and silently
+  // break every duration-based check downstream (NaN comparisons are
+  // always false, so anti-cheat checks would stop rejecting anything).
+  return Object.prototype.hasOwnProperty.call(GAME_MODES, mode);
+}
+
+// Explicit, not derived from Object.keys(GAME_MODES)[0] — insertion order
+// happens to be spec-guaranteed for string keys, but "the default mode is
+// whatever's declared first" is a fragile, easy-to-silently-break implicit
+// contract. Say it outright instead.
+export const DEFAULT_MODE: ModeId = "classic60";

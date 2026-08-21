@@ -1,5 +1,5 @@
 import { GameSession } from "../models/GameSession.model";
-import { GAME_MODES, type ModeId } from "../config/modes";
+import { GAME_MODES, isValidMode, type ModeId } from "../config/modes";
 import {
   InvalidModeError,
   GameSessionNotFoundError,
@@ -16,10 +16,6 @@ import {
 
 const GRACE_MS = 2000;
 const MAX_CLICKS_PER_SECOND = 20;
-
-function isValidMode(mode: string): mode is ModeId {
-  return mode in GAME_MODES;
-}
 
 export async function startSession(userId: string, mode: string) {
   if (!isValidMode(mode)) throw new InvalidModeError(mode);

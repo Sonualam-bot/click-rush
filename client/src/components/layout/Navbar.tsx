@@ -16,13 +16,16 @@ export function Navbar() {
       <Link to="/">ClickRush</Link>
       {user ? (
         <>
+          <Link to="/game">Play</Link>
+          <Link to="/leaderboard">Leaderboard</Link>
+          <Link to="/profile">Profile</Link>
           <span>Hi, {user.username}</span>
           <button onClick={() => logout()}>Log out</button>
         </>
       ) : (
         <>
           <Link to="/login">Login</Link>
-          <Link to="signup">Signup</Link>
+          <Link to="/signup">Signup</Link>
         </>
       )}
     </nav>
