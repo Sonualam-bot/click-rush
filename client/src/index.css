@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/**
+ * Single committed visual identity (no light/dark split) — off-black with
+ * one loud lime accent. Centralized here as theme tokens rather than
+ * scattered color literals, so the whole palette is one place to change:
+ * generates bg-background/text-fg/bg-primary/etc. utility classes.
+ */
+@theme {
+  --color-background: #0d0d0d;
+  --color-surface: #171717;
+  --color-line: #2a2a2a;
+  --color-fg: #f5f5f5;
+  --color-fg-muted: #a3a3a3;
+  --color-primary: #a3e635;
+  --color-primary-strong: #84cc16;
+}
+
 body {
   margin: 0;
   font-family:
@@ -7,5 +23,6 @@ body {
     "Segoe UI",
     Roboto,
     sans-serif;
-  @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+  background-color: var(--color-background);
+  color: var(--color-fg);
 }

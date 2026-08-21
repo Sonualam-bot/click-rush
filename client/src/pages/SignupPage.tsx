@@ -54,14 +54,12 @@ export function SignupPage() {
     }
   }
   const inputClass =
-    "rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-violet-500";
-  const labelClass = "text-sm font-medium text-gray-700 dark:text-gray-300";
+    "rounded-lg border border-line bg-surface px-3 py-2 text-fg focus:outline-none focus:ring-2 focus:ring-primary";
+  const labelClass = "text-sm font-medium text-fg-muted";
 
   return (
     <main className="mx-auto flex min-h-screen max-w-sm flex-col justify-center px-6 py-12">
-      <h1 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
-        Sign up
-      </h1>
+      <h1 className="mb-6 text-2xl font-bold text-fg">Sign up</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
           <label htmlFor="username" className={labelClass}>
@@ -102,18 +100,18 @@ export function SignupPage() {
             className={inputClass}
           />
         </div>
-        {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+        {error && <p className="text-sm text-red-400">{error}</p>}
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-lg bg-violet-600 px-4 py-2 font-medium text-white transition-colors hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-primary px-4 py-2 font-semibold text-background transition-colors hover:bg-primary-strong disabled:cursor-not-allowed disabled:opacity-50"
         >
           {submitting ? "Signing up..." : "Sign up"}
         </button>
       </form>
-      <p className="mt-6 text-sm text-gray-500 dark:text-gray-400">
+      <p className="mt-6 text-sm text-fg-muted">
         Already have an account?{" "}
-        <Link to="/login" className="text-violet-600 dark:text-violet-400 font-medium">
+        <Link to="/login" className="font-medium text-primary">
           Log in
         </Link>
       </p>

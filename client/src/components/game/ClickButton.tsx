@@ -10,7 +10,7 @@ export function ClickButton({ onClick }: ClickButtonProps) {
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.9 }}
-      className="flex h-52 w-52 items-center justify-center rounded-full bg-violet-600 text-2xl font-bold text-white shadow-lg select-none"
+      className="flex h-52 w-52 items-center justify-center rounded-full bg-primary text-2xl font-bold text-background shadow-lg shadow-primary/20 select-none"
     >
       Click!
     </motion.button>

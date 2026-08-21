@@ -162,7 +162,7 @@ export function GamePage() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.3 }}
               transition={{ duration: 0.3 }}
-              className="text-7xl font-bold text-violet-600 dark:text-violet-400"
+              className="text-7xl font-bold text-primary"
             >
               {countdownValue === 0 ? "Go!" : countdownValue}
             </motion.h1>
@@ -172,8 +172,8 @@ export function GamePage() {
         {phase === "playing" && (
           <div className="flex flex-col items-center gap-6">
             <Timer secondsLeft={secondsLeft} />
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Clicks: <span className="font-semibold">{clicks}</span>
+            <p className="text-lg text-fg-muted">
+              Clicks: <span className="font-semibold text-fg">{clicks}</span>
             </p>
             <ClickButton onClick={() => setClicks((c) => c + 1)} />
           </div>
@@ -187,17 +187,13 @@ export function GamePage() {
               onPlayAgain={playAgain}
             />
             {saveStatus === "saving" && (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Saving score...
-              </p>
+              <p className="text-sm text-fg-muted">Saving score...</p>
             )}
             {saveStatus === "saved" && (
-              <p className="text-sm text-green-600 dark:text-green-400">
-                Score saved!
-              </p>
+              <p className="text-sm text-primary">Score saved!</p>
             )}
             {saveStatus === "error" && (
-              <p className="text-sm text-red-600 dark:text-red-400">
+              <p className="text-sm text-red-400">
                 Could not save score — check your connection.
               </p>
             )}
