@@ -9,12 +9,28 @@ export interface GameModeConfig {
   id: string;
   duration: number;
   label: string;
+  shortLabel: string;
 }
 
 export const GAME_MODES: GameModeConfig[] = [
-  { id: "classic60", duration: 60, label: "Classic — 60 seconds" },
-  { id: "blitz30", duration: 30, label: "Blitz — 30 seconds" },
-  { id: "endurance120", duration: 120, label: "Endurance — 120 seconds" },
+  {
+    id: "classic60",
+    duration: 60,
+    label: "Classic — 60 seconds",
+    shortLabel: "Classic",
+  },
+  {
+    id: "blitz30",
+    duration: 30,
+    label: "Blitz — 30 seconds",
+    shortLabel: "Blitz",
+  },
+  {
+    id: "endurance120",
+    duration: 120,
+    label: "Endurance — 120 seconds",
+    shortLabel: "Endurance",
+  },
 ];
 
 export function getModeDuration(modeId: string): number {
