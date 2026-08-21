@@ -4,6 +4,7 @@ import { startSession, submitSession } from "../services/score.service";
 import { asyncHandler } from "../utils/asyncHandler";
 import { AuthedRequest } from "../middleware/requireAuth";
 import { GAME_MODES, type ModeId } from "../config/modes";
+import { getIO } from "../sockets";
 
 /**
  * Thin HTTP layer for the game session lifecycle — parse/validate, call
@@ -26,6 +27,17 @@ export const start = asyncHandler(async (req: AuthedRequest, res: Response) => {
 
 export const submit = asyncHandler(async (req: AuthedRequest, res: Response) => {
   const { sessionId, clicks } = submitGameSchema.parse(req.body);
-  const result = await submitSession(req.userId!, sessionId, clicks);
-  res.json(result);
+  const { mode, ...responseBody } = await submitSession(
+    req.userId!,
+    sessionId,
+    clicks,
+  );
+
+  // The client's leaderboard view reacts by refetching (see
+  // client/src/hooks/useLeaderboard.ts), not by reading fields off this
+  // event — so the payload only needs to say *which* leaderboard changed,
+  // not carry score/username details nobody downstream will use.
+  getIO().to(`leaderboard:${mode}`).emit("leaderboard:update", { mode });
+
+  res.json(responseBody);
 });

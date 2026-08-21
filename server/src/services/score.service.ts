@@ -70,6 +70,7 @@ export async function submitSession(
   await session.save();
 
   return {
+    mode: session.mode,
     score: session.score,
     clicks: session.clicks,
     clicksPerSecond: Number((clicks / modeConfig.duration).toFixed(2)),

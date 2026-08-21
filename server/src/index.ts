@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { createServer } from "http";
 import { connectDB } from "./config/db";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes";
@@ -8,6 +9,7 @@ import gameRoutes from "./routes/game.routes";
 import leaderboardRoutes from "./routes/leaderboard.routes";
 import userRoutes from "./routes/user.routes";
 import { errorHandler } from "./middleware/errorHandler";
+import { initSocket } from "./sockets";
 
 /**
  * Entry point — wires middleware, mounts routes/*.routes.ts, and starts
@@ -16,6 +18,10 @@ import { errorHandler } from "./middleware/errorHandler";
  * with errors bubbling up through middleware/errorHandler.ts, mounted
  * last below. Add a new domain's routes the same way authRoutes is
  * mounted: `app.use("/things", thingRoutes)`, placed above errorHandler.
+ *
+ * Wrapped in an explicit http.Server (not plain app.listen()) so Express
+ * and Socket.IO can share the same underlying server/port — see
+ * sockets/index.ts.
  */
 
 dotenv.config();
@@ -52,11 +58,14 @@ app.use("/user", userRoutes);
  */
 app.use(errorHandler);
 
+const httpServer = createServer(app);
+initSocket(httpServer);
+
 const PORT = process.env.PORT || 4000;
 
 async function main() {
   await connectDB();
-  app.listen(PORT, () => {
+  httpServer.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
 }
