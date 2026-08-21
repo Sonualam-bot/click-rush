@@ -53,48 +53,69 @@ export function SignupPage() {
       setSubmitting(false);
     }
   }
+  const inputClass =
+    "rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-violet-500";
+  const labelClass = "text-sm font-medium text-gray-700 dark:text-gray-300";
+
   return (
-    <main style={{ padding: "2rem", maxWidth: 320 }}>
-      <h1>Sign up</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username</label>
+    <main className="mx-auto flex min-h-screen max-w-sm flex-col justify-center px-6 py-12">
+      <h1 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+        Sign up
+      </h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="username" className={labelClass}>
+            Username
+          </label>
           <input
             id="username"
             type="text"
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className={inputClass}
           />
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="email" className={labelClass}>
+            Email
+          </label>
           <input
             id="email"
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className={inputClass}
           />
         </div>
-
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="password" className={labelClass}>
+            Password
+          </label>
           <input
             id="password"
             type="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className={inputClass}
           />
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit" disabled={submitting}>
+        {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+        <button
+          type="submit"
+          disabled={submitting}
+          className="rounded-lg bg-violet-600 px-4 py-2 font-medium text-white transition-colors hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50"
+        >
           {submitting ? "Signing up..." : "Sign up"}
         </button>
       </form>
-      <p>
-        Already have an account? <Link to="/login">Log in</Link>
+      <p className="mt-6 text-sm text-gray-500 dark:text-gray-400">
+        Already have an account?{" "}
+        <Link to="/login" className="text-violet-600 dark:text-violet-400 font-medium">
+          Log in
+        </Link>
       </p>
     </main>
   );

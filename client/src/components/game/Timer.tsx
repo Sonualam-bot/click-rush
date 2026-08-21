@@ -3,7 +3,17 @@ interface TimerProps {
 }
 
 export function Timer({ secondsLeft }: TimerProps) {
+  const isLow = secondsLeft <= 10;
+
   return (
-    <div style={{ fontSize: "3rem", fontWeight: "bold" }}>{secondsLeft}s</div>
+    <div
+      className={`text-5xl font-bold tabular-nums transition-colors ${
+        isLow
+          ? "animate-pulse text-red-500 dark:text-red-400"
+          : "text-gray-900 dark:text-gray-100"
+      }`}
+    >
+      {secondsLeft}s
+    </div>
   );
 }

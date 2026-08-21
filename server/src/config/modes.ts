@@ -11,6 +11,8 @@ export interface GameModeConfig {
 
 export const GAME_MODES = {
   classic60: { duration: 60, label: "Classic — 60 seconds" },
+  blitz30: { duration: 30, label: "Blitz — 30 seconds" },
+  endurance120: { duration: 120, label: "Endurance — 120 seconds" },
 } as const satisfies Record<string, GameModeConfig>;
 
 export type ModeId = keyof typeof GAME_MODES;

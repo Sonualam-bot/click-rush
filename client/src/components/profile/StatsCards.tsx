@@ -6,27 +6,33 @@ interface StatsCardsProps {
 
 export function StatsCards({ stats }: StatsCardsProps) {
   if (stats.byMode.length === 0) {
-    return <p>No games played yet — go set a score!</p>;
+    return (
+      <p className="text-gray-500 dark:text-gray-400">
+        No games played yet — go set a score!
+      </p>
+    );
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "1rem",
-        justifyContent: "center",
-        flexWrap: "wrap",
-      }}
-    >
+    <div className="flex flex-wrap justify-center gap-4">
       {stats.byMode.map((m) => (
         <div
           key={m.mode}
-          style={{ border: "1px solid #ddd", padding: "1rem", minWidth: 150 }}
+          className="min-w-[160px] rounded-xl border border-gray-200 dark:border-gray-800 p-5 text-left"
         >
-          <h3>{m.mode}</h3>
-          <p>Best: {m.bestScore}</p>
-          <p>Rank: #{m.rank}</p>
-          <p>Games played: {m.gamesPlayed}</p>
+          <h3 className="text-sm font-semibold text-violet-600 dark:text-violet-400">
+            {m.mode}
+          </h3>
+          <p className="mt-2 text-2xl font-bold text-gray-900 dark:text-gray-100">
+            {m.bestScore}
+          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            best score
+          </p>
+          <div className="mt-3 flex justify-between text-sm text-gray-600 dark:text-gray-300">
+            <span>Rank #{m.rank}</span>
+            <span>{m.gamesPlayed} games</span>
+          </div>
         </div>
       ))}
     </div>

@@ -1,20 +1,18 @@
+import { motion } from "motion/react";
+
 interface ClickButtonProps {
   onClick: () => void;
 }
 
 export function ClickButton({ onClick }: ClickButtonProps) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
-      style={{
-        width: 200,
-        height: 200,
-        borderRadius: "50%",
-        fontSize: "1.5rem",
-        cursor: "pointer",
-      }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.9 }}
+      className="flex h-52 w-52 items-center justify-center rounded-full bg-violet-600 text-2xl font-bold text-white shadow-lg select-none"
     >
       Click!
-    </button>
+    </motion.button>
   );
 }

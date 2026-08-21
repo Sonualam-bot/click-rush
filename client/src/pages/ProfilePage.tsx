@@ -28,14 +28,22 @@ export function ProfilePage() {
   return (
     <>
       <Navbar />
-      <main style={{ padding: "2rem", textAlign: "center" }}>
-        <h1>Profile</h1>
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
+      <main className="mx-auto max-w-2xl px-6 py-10 text-center">
+        <h1 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Profile
+        </h1>
+        {loading && (
+          <p className="text-gray-500 dark:text-gray-400">Loading...</p>
+        )}
+        {error && (
+          <p className="text-red-600 dark:text-red-400">{error}</p>
+        )}
         {!loading && !error && stats && (
           <>
             <StatsCards stats={stats} />
-            <h2>History</h2>
+            <h2 className="mt-10 mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
+              History
+            </h2>
             <HistoryTable items={history} />
           </>
         )}

@@ -12,11 +12,17 @@ export function LeaderboardPage() {
   return (
     <>
       <Navbar />
-      <main style={{ padding: "2rem", textAlign: "center" }}>
-        <h1>Leaderboard</h1>
+      <main className="mx-auto max-w-2xl px-6 py-10 text-center">
+        <h1 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Leaderboard
+        </h1>
         <LeaderboardTabs active={period} onChange={setPeriod} />
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
+        {loading && (
+          <p className="mt-8 text-gray-500 dark:text-gray-400">Loading...</p>
+        )}
+        {error && (
+          <p className="mt-8 text-red-600 dark:text-red-400">{error}</p>
+        )}
         {!loading && !error && <LeaderboardTable entries={entries} />}
       </main>
     </>
